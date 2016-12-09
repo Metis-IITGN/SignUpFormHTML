@@ -1,0 +1,37 @@
+<html>
+<body>
+<form>
+   <h1> Sign Up</h1>
+   <fieldset>
+   Email Address:
+   <input type="text" name:"email" value="peter.parker">@iitgn.ac.in
+   <br>
+   Name:
+   <input type="text" name:"name" value="Peter Parker">
+   <br>
+   Roll No:
+   <input type="text" name:"roll" value="16110038">
+   <br>
+<!--If to be done by radio option
+   Course:
+   <input type="radio" name="course" value="btech" checked> BTech <br>
+   <input type="radio" name="course" value="mtech "> Mtech<br>
+   <input type="radio" name="course" value="msc"> MSc<br>
+   <input type="radio" name="course" value="ma"> MA<br>
+   <input type="radio" name="course" value="phd"> PHD<br>
+   <input type="radio" name="course" value="alumni"> Alumni<br>
+-->
+   Course:<select name="course">
+	<option value="btech">Btech</option>
+	<option value="mtech">Mtech</option>
+	<option value="msc">MSc</option>
+	<option value="ma">MA</option>
+	<option value="phd">PHD</option>
+	<option value="alumni">Alumni</option>
+   </select><br>	
+   </fieldset>
+   <br><input type="submit" value="Submit"><br> 
+</form>
+</body>
+</html> 
+ 
