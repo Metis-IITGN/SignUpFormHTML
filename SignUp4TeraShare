@@ -1,19 +1,18 @@
 <html>
 <body>
-<form>
+<form method="post" action="signup.php">
    <h1> Sign Up</h1>
    <fieldset>
-   Email Address:
-   <input type="text" name:"email" value="peter.parker">@iitgn.ac.in
+   Email Address*:
+   <input type="text" name="email" value="peter.parker" >@iitgn.ac.in
    <br>
    Name:
-   <input type="text" name:"name" value="Peter Parker">
+   <input type="text" name="name" value="Peter Parker">
    <br>
    Roll No:
-   <input type="text" name:"roll" value="16110038">
+   <input type="text" name="roll" value="16110038">
    <br>
-<!--If to be done by radio option
-   Course:
+<!--Course:
    <input type="radio" name="course" value="btech" checked> BTech <br>
    <input type="radio" name="course" value="mtech "> Mtech<br>
    <input type="radio" name="course" value="msc"> MSc<br>
@@ -28,7 +27,11 @@
 	<option value="ma">MA</option>
 	<option value="phd">PHD</option>
 	<option value="alumni">Alumni</option>
-   </select><br>	
+   </select><br>
+   Password*:
+   <input type="password" name="password">
+   <br>
+   *Mandatory Fields	
    </fieldset>
    <br><input type="submit" value="Submit"><br> 
 </form>
