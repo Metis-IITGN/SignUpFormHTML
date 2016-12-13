@@ -11,6 +11,15 @@ $_SESSION["course_entered"] = NULL;
 $_SESSION["password_entered"] = NULL;
 $_SESSION["password2_entered"] = NULL;
 $_SESSION["user_loggedin"] = NULL;
+$_SESSION["passwords_equal"] = NULL;
+
+$_SESSION["email"] = NULL;
+$_SESSION["name"] = NULL;
+$_SESSION["roll"] = NULL;
+$_SESSION["course"] = NULL;
+$_SESSION["password"] = NULL;
+$_SESSION["password2"] = NULL;
+
     
     if (isset($_POST["submit_btn"]))
     {
@@ -20,7 +29,15 @@ $_SESSION["user_loggedin"] = NULL;
         $course = $_POST["course"];
         $password = $_POST["password"];
         $password2 = $_POST["password2"];
-
+        
+        $_SESSION["email"] = $email;
+        $_SESSION["roll"] = $roll;
+        $_SESSION["name"] = $name;
+        $_SESSION["course"] = $course;
+        $_SESSION["password"] = $password;
+        $_SESSION["password2"] = $password2;
+        
+        
     if (($email == NULL)||($roll==NULL)||($course == NULL)||($password==NULL)||($password2 == NULL))
     {
         if (($email == NULL))
@@ -81,7 +98,7 @@ $_SESSION["user_loggedin"] = NULL;
     
         $new_user = "INSERT INTO registered_users(email,name,roll,course,password,status) VALUES('$email','$name','$roll','$course','$password','0') ";
         mysqli_query($db,$new_user) or die("Trouble signing up".mysql_error());
-        echo "You have successfully signed up!";
+        header("Location: welcome.php");
     }
                 else
                 {
@@ -103,7 +120,7 @@ $_SESSION["user_loggedin"] = NULL;
         <form method="post" action="signuprush.php">
             <h1>SIGN UP!</h1>
             <fieldset>
-                Email*: <input type="text" name="email" default="email" placeholder="email">@iitgn.ac.in<br>   
+                Email*: <input type="text" name="email" default="email" placeholder="email" value="<?php if ($_SESSION["email"]){echo $_SESSION["email"];} ?>">@iitgn.ac.in<br>   
                 
                 <?php                
                 if (($_SESSION["email_entered"] == "NO")&&(isset($_POST["submit_btn"])))
@@ -113,8 +130,8 @@ $_SESSION["user_loggedin"] = NULL;
                 ?>               
                 
                 
-                Name: <input type="text" name="name" default="Team TeraShare" placeholder="Team TeraShare"><br>
-                Roll No*: <input type="text" name="roll" default="11111111" placeholder="11111111"><br>
+                Name: <input type="text" name="name" default="Team TeraShare" placeholder="Team TeraShare" value="<?php if ($_SESSION["name"]){echo $_SESSION["name"];} ?>"><br>
+                Roll No*: <input type="text" name="roll" default="11111111" placeholder="11111111" value="<?php if ($_SESSION["roll"]){echo $_SESSION["roll"];} ?>"><br>
                 
                 <?php                
                 if (($_SESSION["roll_entered"] == "NO")&&(isset($_POST["submit_btn"])))
@@ -139,7 +156,7 @@ $_SESSION["user_loggedin"] = NULL;
                 }
                 ?>  
                 
-                Password*: <input type="password" name="password" default="password" placeholder="password">
+                Password*: <input type="password" name="password" default="password" placeholder="password" value="<?php if ($_SESSION["password"]){echo $_SESSION["password"];} ?>">
                 
                 <?php                
                 if (($_SESSION["password_entered"] == "NO")&&(isset($_POST["submit_btn"])))
@@ -147,7 +164,7 @@ $_SESSION["user_loggedin"] = NULL;
                     echo "Please enter password <br>";
                 }
                 ?><br>
-                Re-enter password*: <input type="password" name="password2" default="password" placeholder="password"><br>
+                Re-enter password*: <input type="password" name="password2" default="password" placeholder="password" value="<?php if ($_SESSION["password"]){echo $_SESSION["password"];} ?>"><br>
                 
                 <?php                
                 if (($_SESSION["password2_entered"] == "NO")&&(isset($_POST["submit_btn"])))
@@ -167,8 +184,9 @@ $_SESSION["user_loggedin"] = NULL;
                 }
                 ?>
                 *Mandatory fields
+                <input type="submit" name="submit_btn" value="register">
             </fieldset>
-            <input type="submit" name="submit_btn" value="register">
+            
         </form>
     
     </body>
