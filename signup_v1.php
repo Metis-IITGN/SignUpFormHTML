@@ -116,63 +116,26 @@ $_SESSION["password2"] = NULL;
     <head>
         <title>Sign Up for TeraShare</title>
     </head>
-    <style>
-        body
-        {
-            background-color: black;
-        }
-h1{background-color:blue; padding:0;}
-fieldset{font-size:1.7em;background-color:blue;border-radius:30px;}
-h1{font-size:3em;}
-ul,h1{margin:0;}
-
-footer{background-color:blue;position:fixed;width:99.3%;bottom:0;}
-h3{text-align:right;}
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #0020FF;
-}
-
-li{
-    float: right;
-}
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 16px;
-    text-decoration: none;
-}
-
-li a:hover {
-    background-color: #000000;
-}
-        fieldset
-        {
-            width: 40%; margin: 0px auto;padding:30px; overflow: scroll;
-        }
-        .alert
-        {
-            background-color: bisque;
-            color: red;
-        }
-</style>
+    <link type="text/css" rel="stylesheet" href="css/css_for_signup.css">
     <body>
-        <ul>
-              <li><a href="#logout">Logout</a></li>
+        <ul id="header">
+              <li><a class="alert" href="#SignUp">Sign Up</a></li>
               <li><a href="#ContactUs">Contact Us</a></li>
-              <li><a href="#FAQ">FAQ</a></li>
-              <li><a href="#home">Home</a></li>
+              <li><a href="#FAQ">FAQs</a></li>
+              <li><a href="#Login">Login</a></li>
             </ul>
+        
+        <div class="navigationbar">
+      <h1>Tera share</h1>
+	  <h4>Welcomes you</h4>
+    </div><br><br>
+        
+        
         <form method="post" action="signuprush.php">
-            <h1><center>SIGN UP!</center></h1>
-<br>
-<br>
+            
             <fieldset>
-                Email*: <input type="text" name="email" default="email" placeholder="email" value="<?php if ($_SESSION["email"]){echo $_SESSION["email"];} ?>">@iitgn.ac.in<br>   
+                <h2 >Signup</h2>
+                <label>Email<sup>*</sup></label>: <input type="text" name="email" default="email" placeholder="email" value="<?php if ($_SESSION["email"]){echo $_SESSION["email"];} ?>">@iitgn.ac.in<br>   
                 
                 <?php                
                 if (($_SESSION["email_entered"] == "NO")&&(isset($_POST["submit_btn"])))
@@ -182,8 +145,8 @@ li a:hover {
                 ?>               
                 
                 
-                Name: <input type="text" name="name" default="Team TeraShare" placeholder="Team TeraShare" value="<?php if ($_SESSION["name"]){echo $_SESSION["name"];} ?>"><br>
-                Roll No*: <input type="text" name="roll" default="11111111" placeholder="11111111" value="<?php if ($_SESSION["roll"]){echo $_SESSION["roll"];} ?>"><br>
+                <label>Name</label> <input type="text" name="name" default="Team TeraShare" placeholder="Team TeraShare" value="<?php if ($_SESSION["name"]){echo $_SESSION["name"];} ?>"><br>
+                <label>Roll-no<sup>*</sup></label> <input type="text" name="roll" default="11111111" placeholder="11111111" value="<?php if ($_SESSION["roll"]){echo $_SESSION["roll"];} ?>"><br>
                 
                 <?php                
                 if (($_SESSION["roll_entered"] == "NO")&&(isset($_POST["submit_btn"])))
@@ -192,7 +155,7 @@ li a:hover {
                 }
                 ?>  
                 
-                Course*: <select name="course">
+                <label>Course<sup>*</sup></label><select name="course">
                     <option value="btech">btech</option>
                     <option value="mtech">mtech</option>
                     <option value="msc">msc</option>
@@ -208,7 +171,7 @@ li a:hover {
                 }
                 ?>  
                 
-                Password*: <input type="password" name="password" default="password" placeholder="password" value="<?php if ($_SESSION["password"]){echo $_SESSION["password"];} ?>"><br>
+                <label>Password<sup>*</sup></label> <input type="password" name="password" default="password" placeholder="password" value="<?php if ($_SESSION["password"]){echo $_SESSION["password"];} ?>"><br>
                 
                 <?php                
                 if (($_SESSION["password_entered"] == "NO")&&(isset($_POST["submit_btn"])))
@@ -216,7 +179,7 @@ li a:hover {
                     echo "<span class='alert'>Please enter password </span><br>";
                 }
                 ?><br>
-                Re-enter password*: <input type="password" name="password2" default="password" placeholder="password" value="<?php if ($_SESSION["password"]){echo $_SESSION["password"];} ?>"><br>
+                <label>Reenter password<sup>*</sup></label> <input type="password" name="password2" default="password" placeholder="password" value="<?php if ($_SESSION["password"]){echo $_SESSION["password"];} ?>"><br>
                 
                 <?php                
                 if (($_SESSION["password2_entered"] == "NO")&&(isset($_POST["submit_btn"])))
@@ -235,7 +198,7 @@ li a:hover {
                     }
                 }
                 ?>
-                *Mandatory fields
+                <p>* manadtory fields</p>
                 <center><input type="submit" name="submit_btn" value="register"></center>
             </fieldset>
             
