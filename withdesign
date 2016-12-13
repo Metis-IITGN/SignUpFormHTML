@@ -1,0 +1,75 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Sign Up for TeraShare</title>
+    </head>
+    <body bgcolor=#000000>
+
+	<style>
+h1,fieldset{background-color:blue;
+padding:0;}
+fieldset{font-size:1.7em;}
+h1{font-size:3em;}
+
+footer{background-color:blue;
+position:absolute;
+bottom:0}
+h3{text-align:right;}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #0020FF;
+}
+
+li{
+    float: right;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #000000;
+}
+</style>
+
+
+<ul>
+  <li><a href="#logout">Logout</a></li>
+  <li><a href="#request">Request</a></li>
+  <li><a href="#download">Download</a></li>
+  <li><a href="#home">Home</a></li>
+
+</ul>
+
+        <form method="post" action="signup.php">
+            <h1><center>SIGN UP!</center></h1>
+            <fieldset>
+                Email*: <input type="text" name="email" default="email" placeholder="email">@iitgn.ac.in<br>
+                Name: <input type="text" name="name" default="Team TeraShare" placeholder="Team TeraShare"><br>
+                Roll No: <input type="text" name="roll" default="11111111" placeholder="11111111"><br>
+                Course: <select name="course">
+                    <option value="btech">btech</option>
+                    <option value="mtech">mtech</option>
+                    <option value="msc">msc</option>
+                    <option value="ma">ma</option>
+                    <option value="phd">phd</option>
+                    <option value="alumni">alumni</option>
+                </select><br>
+                *Mandatory fields
+            </fieldset>
+            <input type="submit">
+        </form>
+    
+    </body>
+<footer>
+<h3>Page Developed and Maintained by <b>Team TeraShare</b></h3>
+</footer>
+
+</html>
