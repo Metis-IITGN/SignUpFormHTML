@@ -7,8 +7,9 @@ $roll=$_POST["roll"];
 $course=$_POST["course"];
 $password=$_POST["password"];
 $password2=$_POST["password2"];
+$datastore = ""; // put the name of your database in which registered_users is there
 $datastore=mysqli_connect("localhost:8080","root","",$datastore);
-$result = mysqli_query($datastore,"SELECT * FROM registered_users WHERE Email==$email");
+$result = mysqli_query($datastore,"SELECT * FROM registered_users WHERE Email==$email;");
 $num_rows = mysqli_num_rows($result);
 
 
