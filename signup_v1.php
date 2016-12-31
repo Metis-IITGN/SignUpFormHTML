@@ -19,6 +19,10 @@ $_SESSION["roll"] = NULL;
 $_SESSION["course"] = NULL;
 $_SESSION["password"] = NULL;
 $_SESSION["password2"] = NULL;
+$_SESSION["loggedin"] = "no";
+$_SESSION["emailexists"] = NULL;
+
+/*$_SESSION["loggedin"] = NULL;*/
 
     
     if (isset($_POST["submit_btn"]))
@@ -94,11 +98,21 @@ $_SESSION["password2"] = NULL;
             {
     if (($password == $password2))
     {
+        $rows = mysqli_query($db,"SELECT * FROM registered_users WHERE email='{$email}'");
+        $num = mysqli_num_rows($rows);
+        if ($num > 0)
+        {
+            $_SESSION["emailexists"] = "yes";
+        }
+        else
+        {
         $_SESSION["passwords_equal"] = "YES";
     
         $new_user = "INSERT INTO registered_users(email,name,roll,course,password,status) VALUES('$email','$name','$roll','$course','$password','0') ";
         mysqli_query($db,$new_user) or die("Trouble signing up".mysql_error());
+        $_SESSION["loggedin"] = "yes";
         header("Location: welcome.php");
+        }
     }
                 else
                 {
@@ -135,12 +149,21 @@ $_SESSION["password2"] = NULL;
             
             <fieldset>
                 <h2 >Signup</h2>
-                <label>Email<sup>*</sup></label>: <input type="text" name="email" default="email" placeholder="email" value="<?php if ($_SESSION["email"]){echo $_SESSION["email"];} ?>">@iitgn.ac.in<br>   
+                <label>Email<sup>*</sup></label>: <input type="text" name="email" default="email" placeholder="email" value="<?php if ($_SESSION["email"]){echo $_SESSION["email"];} ?>"><!--@iitgn.ac.in--><br>   
                 
                 <?php                
                 if (($_SESSION["email_entered"] == "NO")&&(isset($_POST["submit_btn"])))
                 {
                     echo "<p class='alert'>Please enter email id</p> <br>";
+                }
+                else if ($_SESSION["emailexists"] == "yes")
+                {
+                    
+                   
+                        echo "<p class='alert'>Email id already exists</p> <br>";
+                
+                    
+                    
                 }
                 ?>               
                 
