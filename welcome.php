@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+$db_username = "root";
+    $db_password = "";
+    $db = "names";   $db=mysqli_connect("localhost",$db_username,$db_password,$db) or die("Failed to connect to database".mysql_error());
+
 function error_found(){
   header("Location: signuprush.php");
 }
@@ -24,11 +28,7 @@ else
         You have successfully signed up!!!<br>
         <a href=\"logout.php\">Logout</a>
 		
-		<form action=\"upload.php\" method=\"post\" enctype=\"multipart/form-data\">
-    Select image to upload:
-    <input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\">
-    <input type=\"submit\" value=\"Upload Image\" name=\"submit\">
-</form>
+		<a href='upload_form.php'>Upload a file: </a>
     
     </body>
 </html>
