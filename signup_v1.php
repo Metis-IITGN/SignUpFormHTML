@@ -5,11 +5,7 @@
     $db_password = "";
     $db = "names";   $db=mysqli_connect("localhost",$db_username,$db_password,$db) or die("Failed to connect to databse".mysql_error());
     
-$_SESSION["email_entered"] = NULL;
-$_SESSION["roll_entered"] = NULL;
-$_SESSION["course_entered"] = NULL;
-$_SESSION["password_entered"] = NULL;
-$_SESSION["password2_entered"] = NULL;
+
 $_SESSION["user_loggedin"] = NULL;
 $_SESSION["passwords_equal"] = NULL;
 
@@ -42,60 +38,7 @@ $_SESSION["emailexists"] = NULL;
         $_SESSION["password2"] = $password2;
         
         
-    if (($email == NULL)||($roll==NULL)||($course == NULL)||($password==NULL)||($password2 == NULL))
-    {
-        if (($email == NULL))
-        {
-            $_SESSION["email_entered"] = "NO";
-        }
-        else
-        {
-            $_SESSION["email_entered"] = "YES";
-        }
-        if (($roll == NULL))
-        {
-            $_SESSION["roll_entered"] = "NO";
-        }
-        else
-        {
-            $_SESSION["roll_entered"] = "YES";
-        }
-        if (($course == NULL))
-        {
-            $_SESSION["course_entered"] = "NO";
-        }
-        else
-        {
-            $_SESSION["course_entered"] = "YES";
-        }
-        if (($email == NULL))
-        {
-            $_SESSION["email_entered"] = "NO";
-        }
-        else
-        {
-            $_SESSION["email_entered"] = "YES";
-        }
-        if (($password == NULL))
-        {
-            $_SESSION["password_entered"] = "NO";
-        }
-        else
-        {
-            $_SESSION["password_entered"] = "YES";
-        }
-        if (($password2 == NULL))
-        {
-            $_SESSION["password2_entered"] = "NO";
-        }
-        else
-        {
-            $_SESSION["password2_entered"] = "YES";
-        }
-        
-    }
-        else
-            {
+    
     if (($password == $password2))
     {
         $rows = mysqli_query($db,"SELECT * FROM registered_users WHERE email='{$email}'");
@@ -119,7 +62,7 @@ $_SESSION["emailexists"] = NULL;
                     $_SESSION["passwords_equal"] = "NO";
                 }
             }
-    }
+    
 
     
        
@@ -129,56 +72,150 @@ $_SESSION["emailexists"] = NULL;
 <html>
     <head>
         <title>Sign Up for TeraShare</title>
+		<style>
+		body
+		{
+			background-color: black;
+		}
+		div.form
+		{
+		    display: block;
+		    text-align: center;
+		}
+		h5
+		{
+			margin: 0;
+			color: white;
+		}
+		form
+		{
+			color: #0d1121;
+		    display: inline-block;
+		    margin-left: auto;
+		    border-radius:30px;
+		    margin-right: auto;
+		    text-align: left; 
+		    width: 50%; 
+		    margin: 2%
+		}
+		form
+		{
+			background-color: white;
+		}
+		h1
+		{
+			font-size: 2.8em;
+			color: white;
+			padding-bottom: 0;}
+		div.header
+		{
+			background: linear-gradient(to bottom, blue,black);
+			line-height: 1.8em;
+		}
+		header
+		{
+			background-color: #0000FF;
+			line-height: 1.5em;
+			color: white;
+		}
+		ul 
+		{
+		    list-style-type: none;
+		    background: linear-gradient(to bottom, blue);
+		    margin: 0;
+		    padding: 0;
+		    overflow: hidden;
+		    
+		    width:100%;
+		}
+		form
+		{
+			text-align: center
+		}
+		li
+		{
+		    float: right;
+		}
+		li a 
+		{
+		    display: block;
+		    color: white;
+		    text-align: center;
+		    padding: 16px;
+		    text-decoration: none;
+		}
+		footer
+		{
+			
+			width:100%; 
+			line-height: 0.5em;
+			color: white;
+			text-align:right;
+			background: linear-gradient(to bottom, black,#0000FF);
+			position: static;
+		    bottom: 0;
+		    left: 0;
+		    right: 0;
+		    height:80px;
+		}
+		li a:hover
+		{
+		    background-color: #00FFFF;
+		}
+	</style>
+		
     </head>
-    <link type="text/css" rel="stylesheet" href="css/css_for_signup.css">
+    <!--<link type="text/css" rel="stylesheet" href="css/css_for_signup.css">-->
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <body>
-        <ul id="header">
-              <li><a class="alert" href="#SignUp">Sign Up</a></li>
-              <li><a href="#ContactUs">Contact Us</a></li>
-              <li><a href="#FAQ">FAQs</a></li>
-              <li><a href="#Login">Login</a></li>
-            </ul>
+        <div class="header" style="margin-top: 0">
+			<ul>
+				<li><a href="signuprush.php">Sign In</a></li>
+				<li><a href="login.php">Login</a></li>
+				<li><a href="#ContactUs">Contact Us</a></li>
+				<li><a href="#FAQ">FAQ</a></li>
+				<li><a href="index.html">Home</a></li>
+			</ul>
+		<h1><center><b>TeraShare</b></center></h1>
+		<h5><b>Sign Up!</b></h5>
+		<br><br>
+		</div>
         
-        <div class="navigationbar">
-      <h1>Tera share</h1>
-	  <h4>Welcomes you</h4>
-    </div><br><br>
-        
-        
+        <div class="form">
         <form method="post" action="signuprush.php">
+			<br>
             
-            <fieldset>
+            <fieldset style = "width: 75%; margin: 0px auto;padding:30px;">
                 <h2 >Signup</h2>
-                <label>Email<sup>*</sup></label>: <input type="text" name="email" default="email" placeholder="email" value="<?php if ($_SESSION["email"]){echo $_SESSION["email"];} ?>"><!--@iitgn.ac.in--><br>   
+				<center><p>
+                <label class="w3-label w3-validate">E-Mail ID<sup>*</sup></label>: <input class="w3-input" type="text" name="email" default="email" placeholder="email" value="<?php if ($_SESSION["email"]){echo $_SESSION["email"];} ?>"  style="width:90%" required><!--@iitgn.ac.in-->   
                 
                 <?php                
-                if (($_SESSION["email_entered"] == "NO")&&(isset($_POST["submit_btn"])))
+                if ((isset($_POST["submit_btn"])))
                 {
-                    echo "<p class='alert'>Please enter email id</p> <br>";
-                }
-                else if ($_SESSION["emailexists"] == "yes")
-                {
-                    
-                   
-                        echo "<p class='alert'>Email id already exists</p> <br>";
-                
+                   if ($_SESSION["emailexists"] == "yes")
+               
+                        echo "<p class='alert'>Email id already exists</p> <br>";             
                     
                     
                 }
-                ?>               
+                ?>      
+					</p></center>
+                <center><p>
+                
+                <label  class="w3-label w3-validate">Name<sup>*</sup></label> <input class="w3-input" type="text" name="name" default="Team TeraShare" placeholder="Team TeraShare" value="<?php if ($_SESSION["name"]){echo $_SESSION["name"];} ?>"  style="width:90%" required>
+					</p></center>
+				
+				<center><p>
+                <label  class="w3-label w3-validate">Roll-no<sup>*</sup></label> <input class="w3-input" type="text" name="roll" default="11111111" placeholder="11111111" value="<?php if ($_SESSION["roll"]){echo $_SESSION["roll"];}  ?>" style="width:90%" required><br>
                 
                 
-                <label>Name</label> <input type="text" name="name" default="Team TeraShare" placeholder="Team TeraShare" value="<?php if ($_SESSION["name"]){echo $_SESSION["name"];} ?>"><br>
-                <label>Roll-no<sup>*</sup></label> <input type="text" name="roll" default="11111111" placeholder="11111111" value="<?php if ($_SESSION["roll"]){echo $_SESSION["roll"];} ?>"><br>
-                
-                <?php                
-                if (($_SESSION["roll_entered"] == "NO")&&(isset($_POST["submit_btn"])))
-                {
-                    echo "<span class='alert'>Please enter roll no. </span><br>";
-                }
-                ?>  
-                
-                <label>Course<sup>*</sup></label><select name="course">
+					</p>
+				</center>
+				
+				
+                <center><p>
+                <label  class="w3-label w3-validate">Course<sup>*</sup></label><select name="course">
                     <option value="btech">btech</option>
                     <option value="mtech">mtech</option>
                     <option value="msc">msc</option>
@@ -187,48 +224,41 @@ $_SESSION["emailexists"] = NULL;
                     <option value="alumni">alumni</option>
                 </select><br>
                 
-                <?php                
-                if (($_SESSION["course_entered"] == "NO")&&(isset($_POST["submit_btn"])))
-                {
-                    echo "<span class='alert'>Please select course</span> <br>";
-                }
-                ?>  
+               </p></center>
+				
+				<center><p>
                 
-                <label>Password<sup>*</sup></label> <input type="password" name="password" default="password" placeholder="password" value="<?php if ($_SESSION["password"]){echo $_SESSION["password"];} ?>"><br>
+                <label  class="w3-label w3-validate">Password<sup>*</sup></label> <input class="w3-input" type="password" name="password" default="password" placeholder="password" value="<?php if ($_SESSION["password"]){echo $_SESSION["password"];} ?>"><br>
                 
-                <?php                
-                if (($_SESSION["password_entered"] == "NO")&&(isset($_POST["submit_btn"])))
-                {
-                    echo "<span class='alert'>Please enter password </span><br>";
-                }
-                ?><br>
-                <label>Reenter password<sup>*</sup></label> <input type="password" name="password2" default="password" placeholder="password" value="<?php if ($_SESSION["password"]){echo $_SESSION["password"];} ?>"><br>
+                <br>
+					</p></center>
+				<center><p>
+                <label  class="w3-label w3-validate">Reenter password<sup>*</sup></label> <input class="w3-input" type="password" name="password2" default="password" placeholder="password" value="<?php if ($_SESSION["password"]){echo $_SESSION["password"];} ?>"><br>
                 
-                <?php                
-                if (($_SESSION["password2_entered"] == "NO")&&(isset($_POST["submit_btn"])))
-                {
-                    echo "<span class='alert'>Please reenter password </span> <br>";
-                }
-                ?>  
                 
                 <?php
                 
-                if (($_SESSION["password2_entered"] == "YES")&&($_SESSION["password_entered"] == "YES"))
-                {
+                
                     if ($_SESSION["passwords_equal"] == "NO")
                     {
                         echo "<span class='alert'>Passwords not same. Please reenter password </span><br>";
                     }
-                }
-                ?>
-                <p>* manadtory fields</p>
-                <center><input type="submit" name="submit_btn" value="register"></center>
+                ?></p></center>
+                <h5><center>*Mandatory fields</center></h5>
+                <center><input  class="w3-btn w3-section w3-blue w3-ripple" type="submit" name="submit_btn" value="register"></center>
             </fieldset>
+			<br>
             
         </form>
-        <footer>
-<h3>Page Developed and Maintained by <b>Team TeraShare</b></h3>
-</footer>
+		</div>
+        <footer style="background-color:#0000FF;">
+		<br>
+		<br>
+		<br>
+		<h6>Website maintained and Developed by <b>Team TeraShare</b> </h6>
+		<h6>Contact information: <a href="mailto:terashare@iitgn.ac.in">terashare@iitgn.ac.in</a>.</h6>
+		<br>
+	</footer>
     
     </body>
 
